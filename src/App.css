@@ -1,0 +1,90 @@
+.App {
+  text-align: center;
+  background-image: url("leaftleBackground.jpeg");
+  background-repeat: repeat-x;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+.help {
+  height: 30px;
+  width: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.Header {
+  background-color: #45230d;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.font-face-simple {
+  font-family: "simple";
+}
+
+.GuessBox {
+  background-color: #45230d;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 300px;
+  margin-right: 300px;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+
+.stats {
+  height: 30px;
+  width: 30px;
+  padding-right: 100px;
+  padding-left: 100px;
+}
+
+
+
+.GuessBoxLeft {
+  height: 30px;
+  width: 30px;
+  height: 30px;
+  width: 30px;
+}
+
+.GuessBoxRight {
+  height: 30px;
+  width: 30px;
+}
+
+
+
+.SubmitButton {
+  margin: 15px;
+  cursor:pointer;
+  background-color: #45230d;
+  font-family: "simple";
+  color: #bf9000;
+}
+
+.ResultText {
+  font-family: "simple";
+  color: #bf9000;
+}
+
+.PlayButton {
+  margin: 15px;
+  cursor:pointer;
+  background-color: #45230d;
+  align-items: center;
+}
+
+.logo {
+    scale: 50%;
+    width: 690px;
+    height: 175px;
+}
