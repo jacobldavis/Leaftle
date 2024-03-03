@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/jacobldavis.github.io/static/css/main.8ad060d3.css",
+    "main.js": "/jacobldavis.github.io/static/js/main.99e4fb99.js",
+    "static/media/leaftleBackground.jpeg": "/jacobldavis.github.io/static/media/leaftleBackground.5b4209d1db936b8534e6.jpeg",
+    "static/media/FinkHeavy.ttf": "/jacobldavis.github.io/static/media/FinkHeavy.f4576cda03dbe02933aa.ttf",
+    "static/media/qlarendon_bold.otf": "/jacobldavis.github.io/static/media/qlarendon_bold.72fc69364221faccb3e9.otf",
+    "index.html": "/jacobldavis.github.io/index.html",
+    "main.8ad060d3.css.map": "/jacobldavis.github.io/static/css/main.8ad060d3.css.map",
+    "main.99e4fb99.js.map": "/jacobldavis.github.io/static/js/main.99e4fb99.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8ad060d3.css",
+    "static/js/main.99e4fb99.js"
+  ]
+}
