@@ -1,6 +1,7 @@
 import './App.css';
 import React from "react";
-import { gameOfTheDay, timeOfTheDay, timeGuessUpdate, gameGuessUpdate, submit, play} from './Game.js';
+import { gameOfTheDay, timeOfTheDay, timeGuessUpdate, gameGuessUpdate, submit, play,
+         timeAnswerIndex, gameAnswerIndex, totalAnswer, result1, result2, result3, result4} from './Game.js';
 import { Input } from 'semantic-ui-react';
 import { useState } from 'react';
 
@@ -12,17 +13,8 @@ let songList = [
   ["/NH12AM.mp3", "/NH1AM.mp3", "/NH2AM.mp3", "/NH3AM.mp3", "/NH4AM.mp3", "/NH5AM.mp3", "/NH6AM.mp3", "/NH7AM.mp3", "/NH8AM.mp3", "/NH9AM.mp3", "/NH10AM.mp3", "/NH11AM.mp3", "/NH12PM.mp3", "/NH1PM.mp3", "/NH2PM.mp3", "/NH3PM.mp3", "/NH4PM.mp3", "/NH5PM.mp3", "/NH6PM.mp3", "/NH7PM.mp3", "/NH8PM.mp3", "/NH9PM.mp3", "/NH10PM.mp3", "/NH11PM.mp3"]
 ];
 
-// Contains the names of each song for display.
-let songNames = [
-  ["Animal Crossing GameCube 12AM", "Animal Crossing GameCube 1AM", "Animal Crossing GameCube 2AM", "Animal Crossing GameCube 3AM", "Animal Crossing GameCube 4AM", "Animal Crossing GameCube 5AM", "Animal Crossing GameCube 6AM", "Animal Crossing GameCube 7AM", "Animal Crossing GameCube 8AM", "Animal Crossing GameCube 9AM", "Animal Crossing GameCube 10AM", "Animal Crossing GameCube 11AM", "Animal Crossing GameCube 12PM", "Animal Crossing GameCube 1PM", "Animal Crossing GameCube 2PM", "Animal Crossing GameCube 3PM", "Animal Crossing GameCube 4PM", "Animal Crossing GameCube 5PM", "Animal Crossing GameCube 6PM", "Animal Crossing GameCube 7PM", "Animal Crossing GameCube 8PM", "Animal Crossing GameCube 9PM", "Animal Crossing GameCube 10PM", "Animal Crossing GameCube 11PM"],
-  ["Animal Crossing City Folk and Wild World 12AM", "Animal Crossing City Folk and Wild World 1AM", "Animal Crossing City Folk and Wild World 2AM", "Animal Crossing City Folk and Wild World 3AM", "Animal Crossing City Folk and Wild World 4AM", "Animal Crossing City Folk and Wild World 5AM", "Animal Crossing City Folk and Wild World 6AM", "Animal Crossing City Folk and Wild World 7AM", "Animal Crossing City Folk and Wild World 8AM", "Animal Crossing City Folk and Wild World 9AM", "Animal Crossing City Folk and Wild World 10AM", "Animal Crossing City Folk and Wild World 11AM", "Animal Crossing City Folk and Wild World 12PM", "Animal Crossing City Folk and Wild World 1PM", "Animal Crossing City Folk and Wild World 2PM", "Animal Crossing City Folk and Wild World 3PM", "Animal Crossing City Folk and Wild World 4PM", "Animal Crossing City Folk and Wild World 5PM", "Animal Crossing City Folk and Wild World 6PM", "Animal Crossing City Folk and Wild World 7PM", "Animal Crossing City Folk and Wild World 8PM", "Animal Crossing City Folk and Wild World 9PM", "Animal Crossing City Folk and Wild World 10PM", "Animal Crossing City Folk and Wild World 11PM"],
-  ["Animal Crossing New Leaf 12AM", "Animal Crossing New Leaf 1AM", "Animal Crossing New Leaf 2AM", "Animal Crossing New Leaf 3AM", "Animal Crossing New Leaf 4AM", "Animal Crossing New Leaf 5AM", "Animal Crossing New Leaf 6AM", "Animal Crossing New Leaf 7AM", "Animal Crossing New Leaf 8AM", "Animal Crossing New Leaf 9AM", "Animal Crossing New Leaf 10AM", "Animal Crossing New Leaf 11AM", "Animal Crossing New Leaf 12PM", "Animal Crossing New Leaf 1PM", "Animal Crossing New Leaf 2PM", "Animal Crossing New Leaf 3PM", "Animal Crossing New Leaf 4PM", "Animal Crossing New Leaf 5PM", "Animal Crossing New Leaf 6PM", "Animal Crossing New Leaf 7PM", "Animal Crossing New Leaf 8PM", "Animal Crossing New Leaf 9PM", "Animal Crossing New Leaf 10PM", "Animal Crossing New Leaf 11PM"],
-  ["Animal Crossing New Horizons 12AM", "Animal Crossing New Horizons 1AM", "Animal Crossing New Horizons 2AM", "Animal Crossing New Horizons 3AM", "Animal Crossing New Horizons 4AM", "Animal Crossing New Horizons 5AM", "Animal Crossing New Horizons 6AM", "Animal Crossing New Horizons 7AM", "Animal Crossing New Horizons 8AM", "Animal Crossing New Horizons 9AM", "Animal Crossing New Horizons 10AM", "Animal Crossing New Horizons 11AM", "Animal Crossing New Horizons 12PM", "Animal Crossing New Horizons 1PM", "Animal Crossing New Horizons 2PM", "Animal Crossing New Horizons 3PM", "Animal Crossing New Horizons 4PM", "Animal Crossing New Horizons 5PM", "Animal Crossing New Horizons 6PM", "Animal Crossing New Horizons 7PM", "Animal Crossing New Horizons 8PM", "Animal Crossing New Horizons 9PM", "Animal Crossing New Horizons 10PM", "Animal Crossing New Horizons 11PM"]
-];
-
-function App() {
-
-  // Sets the random song and game.
+// Sets the random song and game.
+const App = () => {
   const [timeAnswerIndex, setTimeAnswerIndex] = useState(timeOfTheDay());
   const [gameAnswerIndex, setGameAnswerIndex] = useState(gameOfTheDay());
   const [timeAnswer, setTimeAnswer] = useState(timeAnswerIndex+1);
@@ -44,52 +36,64 @@ function App() {
   const [gameGuessString, setGameGuessString] = useState("");
   const [guessCount, setGuessCount] = useState(1);
 
+  const handleTimeGuessUpdate = (value) => {
+    timeGuessUpdate(value, setTimeGuess, setTimeGuessString);
+  };
+
+  const handleGameGuessUpdate = (value) => {
+    gameGuessUpdate(value, setGameGuess, setGameGuessString);
+  };
+
+  const handlePlay = () => {
+    play(answerSubmitted, guessCount, gameAnswerIndex, timeAnswerIndex);
+  };
+
   // Returns the app to be displayed.
   return (
       <div className="App">
         <header className="Header">
           
-          <img src="leaftle2.png" className="logo"></img>
+          <img src={require("./assets/leaftle2.png")} className="logo"></img>
           
         </header>
 
       <div className="Body">
         <div className='GuessBox'>
-          <img src="leaf.png" className='GuessBoxLeft'></img>
+          <img src={require("./assets/leaf.png")} className='GuessBoxLeft'></img>
             <p className="ResultText">{result1}</p>
-          <img src="leaf.png" className='GuessBoxRight'></img>
+          <img src={require("./assets/leaf.png")} className='GuessBoxRight'></img>
         </div>
         
         <div className='GuessBox'>
-          <img src="leaf.png" className='GuessBoxLeft'></img>
+          <img src={require("./assets/leaf.png")} className='GuessBoxLeft'></img>
             <p className="ResultText">{result2}</p>
-          <img src="leaf.png" className='GuessBoxRight'></img>
+          <img src={require("./assets/leaf.png")} className='GuessBoxRight'></img>
         </div>
 
         <div className='GuessBox'>
-          <img src="leaf.png" className='GuessBoxLeft'></img>
+          <img src={require("./assets/leaf.png")} className='GuessBoxLeft'></img>
             <p className="ResultText">{result3}</p>
-          <img src="leaf.png" className='GuessBoxRight'></img>
+          <img src={require("./assets/leaf.png")} className='GuessBoxRight'></img>
         </div>
         
           <div className='GuessBox'>
-            <img src="leaf.png" className='GuessBoxLeft'></img>
+            <img src={require("./assets/leaf.png")} className='GuessBoxLeft'></img>
               <p className="ResultText">{result4}{totalAnswer}</p>
-            <img src="leaf.png" className='GuessBoxRight'></img>
+            <img src={require("./assets/leaf.png")} className='GuessBoxRight'></img>
           </div>
           
         </div>
 
         <div className="Play">
-            <button onClick={play} className="PlayButton">
-              <img className="help"src="leafplayicon.png"></img>
+            <button onClick={handlePlay} className="PlayButton">
+              <img className="help"src={require("./assets/leafplayicon.png")}></img>
             </button>
         </div>
 
         <div className="SongSelection">
 
           <div>
-                <Input onChange={event => timeGuessUpdate(event.target.value)} style={{display: "inline-block"}} className="GuessList" list='times' placeholder='Choose time...' />
+                <Input onChange={event => handleTimeGuessUpdate(event.target.value)} style={{display: "inline-block"}} className="GuessList" list='times' placeholder='Choose time...' />
                   <datalist id='times'>
                     <option value='12AM'>12AM</option>
                     <option value='1AM'>1AM</option>
@@ -116,7 +120,7 @@ function App() {
                     <option value='10PM'>10PM</option>
                     <option value='11PM'>11PM</option>
                   </datalist>
-            <Input onChange={event => gameGuessUpdate(event.target.value)} style={{display: "inline-block"}} className="GuessList" list='games' placeholder='Choose game...' ></Input>
+            <Input onChange={event => handleGameGuessUpdate(event.target.value)} style={{display: "inline-block"}} className="GuessList" list='games' placeholder='Choose game...' ></Input>
                 <datalist id='games'>
                   <option value='Animal Crossing GameCube'>Animal Crossing GameCube</option>
                   <option value='Animal Crossing City Folk and Wild World'>Animal Crossing City Folk and Wild World</option>
@@ -127,7 +131,7 @@ function App() {
 
             <div>
 
-              <button onClick={submit} className="SubmitButton">
+              <button onClick={submit(timeGuess, gameGuess, timeAnswer, gameAnswer, setGuessCount, setAnswerSubmitted, setResult1, setResult2, setResult3, setResult4, setTotalAnswer, guessCount, gameAnswerIndex, timeAnswerIndex)} className="SubmitButton">
                 <p>Submit!</p>
               </button>
 
@@ -136,6 +140,6 @@ function App() {
           </div>
         </div>
     );
-}
+};
 
 export default App;
