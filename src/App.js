@@ -1,7 +1,6 @@
 import './App.css';
 import React from "react";
-import { gameOfTheDay, timeOfTheDay, timeGuessUpdate, gameGuessUpdate, submit, play,
-         timeAnswerIndex, gameAnswerIndex, totalAnswer, result1, result2, result3, result4} from './Game.js';
+import { gameOfTheDay, timeOfTheDay, timeGuessUpdate, gameGuessUpdate, submit, play} from './Game.js';
 import { Input } from 'semantic-ui-react';
 import { useState } from 'react';
 
