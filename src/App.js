@@ -1,29 +1,8 @@
 import './App.css';
 import React from "react";
-import { gameOfTheDay, timeOfTheDay } from './Game.js';
+import { gameOfTheDay, timeOfTheDay, timeGuessUpdate, gameGuessUpdate, submit, play} from './Game.js';
 import { Input } from 'semantic-ui-react';
 import { useState } from 'react';
-
-// 2D Array representing each song (column) and game (row) within the Animal Crossing Series. (0-3, 0-23)
-
-// Contains integers representing different songs/games for simple boolean checks.
-let timeList = [
-  ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
-  ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
-  ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
-  ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"]
-];
-
-let timeListNames = [
-  ["12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM"],
-  ["12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM"],
-  ["12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM"],
-  ["12AM", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM"],
-];
-
-// Array representing each game from the Animal Crossing Series.
-
-let gameListNames = ["Animal Crossing GameCube", "Animal Crossing City Folk and Wild World", "Animal Crossing New Leaf", "Animal Crossing New Horizons"];
 
 // Contains the path for each mp3.
 let songList = [
@@ -41,20 +20,13 @@ let songNames = [
   ["Animal Crossing New Horizons 12AM", "Animal Crossing New Horizons 1AM", "Animal Crossing New Horizons 2AM", "Animal Crossing New Horizons 3AM", "Animal Crossing New Horizons 4AM", "Animal Crossing New Horizons 5AM", "Animal Crossing New Horizons 6AM", "Animal Crossing New Horizons 7AM", "Animal Crossing New Horizons 8AM", "Animal Crossing New Horizons 9AM", "Animal Crossing New Horizons 10AM", "Animal Crossing New Horizons 11AM", "Animal Crossing New Horizons 12PM", "Animal Crossing New Horizons 1PM", "Animal Crossing New Horizons 2PM", "Animal Crossing New Horizons 3PM", "Animal Crossing New Horizons 4PM", "Animal Crossing New Horizons 5PM", "Animal Crossing New Horizons 6PM", "Animal Crossing New Horizons 7PM", "Animal Crossing New Horizons 8PM", "Animal Crossing New Horizons 9PM", "Animal Crossing New Horizons 10PM", "Animal Crossing New Horizons 11PM"]
 ];
 
-// Contains the instances for the leaves, beehives, and bellbags.
-let status = ["leaf.png", "bell_bag.png", "bee_hive.png"];
-
-// Array representing each game from the Animal Crossing Series (1 is GC, 2 is CF/WW, 3 is NL, 4 is NH)
-
-let gameList = ["1", "2", "3", "4"];
-
 function App() {
 
   // Sets the random song and game.
   const [timeAnswerIndex, setTimeAnswerIndex] = useState(timeOfTheDay());
   const [gameAnswerIndex, setGameAnswerIndex] = useState(gameOfTheDay());
-  const [timeAnswer, setTimeAnswer] = useState(timeList[gameAnswerIndex][timeAnswerIndex]);
-  const [gameAnswer, setGameAnswer] = useState(gameList[gameAnswerIndex]);
+  const [timeAnswer, setTimeAnswer] = useState(timeAnswerIndex+1);
+  const [gameAnswer, setGameAnswer] = useState(gameAnswerIndex+1);
   const [totalAnswer, setTotalAnswer] = useState();
   const [songPath, setSongPath] = useState(songList[gameAnswerIndex][timeAnswerIndex]);
   const [answerSubmitted, setAnswerSubmitted] = useState(true);
@@ -71,154 +43,6 @@ function App() {
   const [gameGuess, setGameGuess] = useState("");
   const [gameGuessString, setGameGuessString] = useState("");
   const [guessCount, setGuessCount] = useState(1);
-
-  
-  // Updates the guessed time.
-  function timeGuessUpdate(value) {
-    setTimeGuess(value);
-    if (value === "12AM") {
-      setTimeGuess(1);
-    } else if (value === "1AM") {
-      setTimeGuess(2);
-    } else if (value === "2AM") {
-      setTimeGuess(3);
-    } else if (value === "3AM") {
-      setTimeGuess(4);
-    } else if (value === "4AM") {
-      setTimeGuess(5);
-    } else if (value === "5AM") {
-      setTimeGuess(6);
-    } else if (value === "6AM") {
-      setTimeGuess(7);
-    } else if (value === "7AM") {
-      setTimeGuess(8);
-    } else if (value === "8AM") {
-      setTimeGuess(9);
-    } else if (value === "9AM") {
-      setTimeGuess(10);
-    } else if (value === "10AM") {
-      setTimeGuess(11);
-    } else if (value === "11AM") {
-      setTimeGuess(12);
-    } else if (value === "12PM") {
-      setTimeGuess(13);
-    } else if (value === "1PM") {
-      setTimeGuess(14);
-    } else if (value === "2PM") {
-      setTimeGuess(15);
-    } else if (value === "3PM") {
-      setTimeGuess(16);
-    } else if (value === "4PM") {
-      setTimeGuess(17);
-    } else if (value === "5PM") {
-      setTimeGuess(18);
-    } else if (value === "6PM") {
-      setTimeGuess(19);
-    } else if (value === "7PM") {
-      setTimeGuess(20);
-    } else if (value === "8PM") {
-      setTimeGuess(21);
-    } else if (value === "9PM") {
-      setTimeGuess(22);
-    } else if (value === "10PM") {
-      setTimeGuess(23);
-    } else {
-      setTimeGuess(24);
-    } 
-  }
-  
-  // Updates the guessed game.
-  function gameGuessUpdate(value) {
-    setGameGuess(value);
-    if (value === "Animal Crossing GameCube") {
-      setGameGuess(1);
-    } else if (value === "Animal Crossing City Folk and Wild World") {
-      setGameGuess(2);
-    } else if (value === "Animal Crossing New Leaf") {
-      setGameGuess(3);
-    } else {
-      setGameGuess(4);
-    }
-  }
-
-  // Tests whether a selected song and game match the answer.
-  function submit() {
-    if(timeGuess != "" && gameGuess != "") {
-      setGuessCount(guessCount + 1);
-      setAnswerSubmitted(true);
-      if(guessCount == 1) {
-        if (timeGuess == timeAnswer && gameGuess == gameAnswer) {
-          setResult1("Success!");
-        } else {
-          setResult1(songNames[gameGuess - 1][timeGuess - 1]);
-        }
-      }
-
-      if(guessCount == 2) {
-        if (timeGuess == timeAnswer && gameGuess == gameAnswer) {
-          setResult2("You Win!");
-        } else {
-          setResult2(songNames[gameGuess - 1][timeGuess - 1]);
-        }
-      }
-
-      if(guessCount == 3) {
-        if (timeGuess == timeAnswer && gameGuess == gameAnswer) {
-          setResult3("You Win!");
-        } else {
-          setResult3(songNames[gameGuess - 1][timeGuess - 1]);
-        }
-      }
-
-      if(guessCount == 4) {
-        if (timeGuess == timeAnswer && gameGuess == gameAnswer) {
-          setResult4("You Win!");
-        } else {
-          setResult4("You Lost! Correct Answer: ");
-          setTotalAnswer(songNames[gameAnswerIndex][timeAnswerIndex]);
-        }
-      }
-    }
-  }
-
-  // Used to pause the song after a delay.
-  async function delay(milliseconds) {
-    return new Promise((resolve) => setTimeout(resolve, milliseconds));
-  }
-
-  // Plays the song.
-  function play() {
-    let song =  new Audio(songList[gameAnswerIndex][timeAnswerIndex]);
-    if (answerSubmitted) {
-      if (guessCount == 1) {
-        song.play();
-        delay(3000).then(() => {
-          song.pause();
-        });
-      }
-
-      if (guessCount == 2) {
-        song.play();
-        delay(5000).then(() => {
-          song.pause();
-        });
-      }
-
-      if (guessCount == 3) {
-        song.play();
-        delay(8000).then(() => {
-          song.pause();
-        });
-      }
-
-      if (guessCount == 4) {
-        song.play();
-        delay(12000).then(() => {
-          song.pause();
-        });
-      }
-    }
-  }
 
   // Returns the app to be displayed.
   return (
