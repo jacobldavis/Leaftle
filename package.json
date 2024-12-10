@@ -1,5 +1,5 @@
 {
-  "homepage": "https://jacobldavis/jacobldavis.github.io",
+  "homepage": "https://jacobldavis.github.io/Leaftle",
   "name": "leaftle",
   "version": "0.1.0",
   "private": true,
@@ -46,6 +46,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.2.0"
   }
 }
