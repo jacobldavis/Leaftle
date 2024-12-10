@@ -1,11 +1,3 @@
-// Contains the path for each mp3.
-let songList = [
-    ["/GC12AM.mp3", "/GC1AM.mp3", "/GC2AM.mp3", "/GC3AM.mp3", "/GC4AM.mp3", "/GC5AM.mp3", "/GC6AM.mp3", "/GC7AM.mp3", "/GC8AM.mp3", "/GC9AM.mp3", "/GC10AM.mp3", "/GC11AM.mp3", "/GC12PM.mp3", "/GC1PM.mp3", "/GC2PM.mp3", "/GC3PM.mp3", "/GC4PM.mp3", "/GC5PM.mp3", "/GC6PM.mp3", "/GC7PM.mp3", "/GC8PM.mp3", "/GC9PM.mp3", "/GC10PM.mp3", "/GC11PM.mp3"],
-    ["/CF12AM.mp3", "/CF1AM.mp3", "/CF2AM.mp3", "/CF3AM.mp3", "/CF4AM.mp3", "/CF5AM.mp3", "/CF6AM.mp3", "/CF7AM.mp3", "/CF8AM.mp3", "/CF9AM.mp3", "/CF10AM.mp3", "/CF11AM.mp3", "/CF12PM.mp3", "/CF1PM.mp3", "/CF2PM.mp3", "/CF3PM.mp3", "/CF4PM.mp3", "/CF5PM.mp3", "/CF6PM.mp3", "/CF7PM.mp3", "/CF8PM.mp3", "/CF9PM.mp3", "/CF10PM.mp3", "/CF11PM.mp3"],
-    ["/NL12AM.mp3", "/NL1AM.mp3", "/NL2AM.mp3", "/NL3AM.mp3", "/NL4AM.mp3", "/NL5AM.mp3", "/NL6AM.mp3", "/NL7AM.mp3", "/NL8AM.mp3", "/NL9AM.mp3", "/NL10AM.mp3", "/NL11AM.mp3", "/NL12PM.mp3", "/NL1PM.mp3", "/NL2MP.mp3", "/NL3PM.mp3", "/NL4PM.mp3", "/NL5PM.mp3", "/NL6PM.mp3", "/NL7PM.mp3", "/NL8PM.mp3", "/NL9PM.mp3", "/NL10PM.mp3", "/NL11PM.mp3"],
-    ["/NH12AM.mp3", "/NH1AM.mp3", "/NH2AM.mp3", "/NH3AM.mp3", "/NH4AM.mp3", "/NH5AM.mp3", "/NH6AM.mp3", "/NH7AM.mp3", "/NH8AM.mp3", "/NH9AM.mp3", "/NH10AM.mp3", "/NH11AM.mp3", "/NH12PM.mp3", "/NH1PM.mp3", "/NH2PM.mp3", "/NH3PM.mp3", "/NH4PM.mp3", "/NH5PM.mp3", "/NH6PM.mp3", "/NH7PM.mp3", "/NH8PM.mp3", "/NH9PM.mp3", "/NH10PM.mp3", "/NH11PM.mp3"]
-];
-
 // Contains the names of each song for display.
 let songNames = [
     ["Animal Crossing GameCube 12AM", "Animal Crossing GameCube 1AM", "Animal Crossing GameCube 2AM", "Animal Crossing GameCube 3AM", "Animal Crossing GameCube 4AM", "Animal Crossing GameCube 5AM", "Animal Crossing GameCube 6AM", "Animal Crossing GameCube 7AM", "Animal Crossing GameCube 8AM", "Animal Crossing GameCube 9AM", "Animal Crossing GameCube 10AM", "Animal Crossing GameCube 11AM", "Animal Crossing GameCube 12PM", "Animal Crossing GameCube 1PM", "Animal Crossing GameCube 2PM", "Animal Crossing GameCube 3PM", "Animal Crossing GameCube 4PM", "Animal Crossing GameCube 5PM", "Animal Crossing GameCube 6PM", "Animal Crossing GameCube 7PM", "Animal Crossing GameCube 8PM", "Animal Crossing GameCube 9PM", "Animal Crossing GameCube 10PM", "Animal Crossing GameCube 11PM"],
@@ -25,87 +17,60 @@ export function timeOfTheDay() {
 }
 
 // Updates the guessed time.
-export function timeGuessUpdate(value, setTimeGuess, setTimeGuessString) {
-    setTimeGuessString(value);
-    switch(value) {
-    case "12AM":
-        setTimeGuess(1)
-        break;
-    case "1AM":
-        setTimeGuess(2)
-        break;
-    case "2AM":
-        setTimeGuess(3)
-        break;
-    case "3AM":
-        setTimeGuess(4)
-        break;
-    case "4AM":
-        setTimeGuess(5)
-        break;
-    case "5AM":
-        setTimeGuess(6)
-        break;
-    case "6AM":
-        setTimeGuess(7)
-        break;
-    case "7AM":
-        setTimeGuess(8)
-        break;
-    case "8AM":
-        setTimeGuess(9)
-        break;
-    case "9AM":
-        setTimeGuess(10)
-        break;
-    case "10AM":
-        setTimeGuess(11)
-        break;
-    case "11AM":
-        setTimeGuess(12)
-        break;
-    case "12AM":
-        setTimeGuess(13)
-        break;
-    case "1PM":
-        setTimeGuess(14)
-        break;
-    case "2PM":
-        setTimeGuess(15)
-        break;
-    case "3PM":
-        setTimeGuess(16)
-        break;
-    case "4PM":
-        setTimeGuess(17)
-        break;
-    case "5PM":
-        setTimeGuess(18)
-        break;
-    case "6PM":
-        setTimeGuess(19)
-        break;
-    case "7PM":
-        setTimeGuess(20)
-        break;
-    case "8PM":
-        setTimeGuess(21)
-        break;
-    case "9PM":
-        setTimeGuess(22)
-        break;
-    case "10PM":
-        setTimeGuess(23)
-        break;
-    case "11PM":
-        setTimeGuess(24)
-        break;
-    }
+export function timeGuessUpdate(value, setTimeGuess) {
+        if (value === "12AM") {
+          setTimeGuess(1);
+        } else if (value === "1AM") {
+          setTimeGuess(2);
+        } else if (value === "2AM") {
+          setTimeGuess(3);
+        } else if (value === "3AM") {
+          setTimeGuess(4);
+        } else if (value === "4AM") {
+          setTimeGuess(5);
+        } else if (value === "5AM") {
+          setTimeGuess(6);
+        } else if (value === "6AM") {
+          setTimeGuess(7);
+        } else if (value === "7AM") {
+          setTimeGuess(8);
+        } else if (value === "8AM") {
+          setTimeGuess(9);
+        } else if (value === "9AM") {
+          setTimeGuess(10);
+        } else if (value === "10AM") {
+          setTimeGuess(11);
+        } else if (value === "11AM") {
+          setTimeGuess(12);
+        } else if (value === "12PM") {
+          setTimeGuess(13);
+        } else if (value === "1PM") {
+          setTimeGuess(14);
+        } else if (value === "2PM") {
+          setTimeGuess(15);
+        } else if (value === "3PM") {
+          setTimeGuess(16);
+        } else if (value === "4PM") {
+          setTimeGuess(17);
+        } else if (value === "5PM") {
+          setTimeGuess(18);
+        } else if (value === "6PM") {
+          setTimeGuess(19);
+        } else if (value === "7PM") {
+          setTimeGuess(20);
+        } else if (value === "8PM") {
+          setTimeGuess(21);
+        } else if (value === "9PM") {
+          setTimeGuess(22);
+        } else if (value === "10PM") {
+          setTimeGuess(23);
+        } else {
+          setTimeGuess(24);
+        }
 }
 
 // Updates the guessed game.
-export function gameGuessUpdate(value, setGameGuess, setGameGuessString) {
-    setGameGuessString(value);
+export function gameGuessUpdate(value, setGameGuess) {
     if (value === "Animal Crossing GameCube") {
         setGameGuess(1);
     } else if (value === "Animal Crossing City Folk and Wild World") {
@@ -163,36 +128,34 @@ export async function delay(milliseconds) {
 }
 
 // Plays the song.
-export function play(answerSubmitted, guessCount, gameAnswerIndex, timeAnswerIndex) {
+export function play(guessCount, gameAnswerIndex, timeAnswerIndex, songList) {
     let song =  new Audio(songList[gameAnswerIndex][timeAnswerIndex]);
-    if (answerSubmitted) {
-        if (guessCount == 1) {
-            song.play();
-            delay(3000).then(() => {
+    if (guessCount == 1) {
+        song.play();
+        delay(3000).then(() => {
             song.pause();
-            });
-        }
+        });
+    }
 
-        if (guessCount == 2) {
-            song.play();
-            delay(5000).then(() => {
-                song.pause();
-            });
-        }
+    if (guessCount == 2) {
+        song.play();
+        delay(6000).then(() => {
+            song.pause();  
+        });
+    }
 
-        if (guessCount == 3) {
-            song.play();
-            delay(8000).then(() => {
-                song.pause();
-            });
-        }
+    if (guessCount == 3) {
+        song.play();
+        delay(9000).then(() => {
+            song.pause();
+        });
+    }
 
-        if (guessCount == 4) {
-            song.play();
-            delay(12000).then(() => {
-                song.pause();
-            });
-        }
+    if (guessCount == 4) {
+        song.play();
+        delay(12000).then(() => {
+            song.pause();
+        });
     }
 }
     

@@ -1,15 +1,16 @@
 import './App.css';
 import React from "react";
+import audioFiles from "./audioFiles";
 import { gameOfTheDay, timeOfTheDay, timeGuessUpdate, gameGuessUpdate, submit, play} from './Game.js';
 import { Input } from 'semantic-ui-react';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // Contains the path for each mp3.
 let songList = [
-  ["/GC12AM.mp3", "/GC1AM.mp3", "/GC2AM.mp3", "/GC3AM.mp3", "/GC4AM.mp3", "/GC5AM.mp3", "/GC6AM.mp3", "/GC7AM.mp3", "/GC8AM.mp3", "/GC9AM.mp3", "/GC10AM.mp3", "/GC11AM.mp3", "/GC12PM.mp3", "/GC1PM.mp3", "/GC2PM.mp3", "/GC3PM.mp3", "/GC4PM.mp3", "/GC5PM.mp3", "/GC6PM.mp3", "/GC7PM.mp3", "/GC8PM.mp3", "/GC9PM.mp3", "/GC10PM.mp3", "/GC11PM.mp3"],
-  ["/CF12AM.mp3", "/CF1AM.mp3", "/CF2AM.mp3", "/CF3AM.mp3", "/CF4AM.mp3", "/CF5AM.mp3", "/CF6AM.mp3", "/CF7AM.mp3", "/CF8AM.mp3", "/CF9AM.mp3", "/CF10AM.mp3", "/CF11AM.mp3", "/CF12PM.mp3", "/CF1PM.mp3", "/CF2PM.mp3", "/CF3PM.mp3", "/CF4PM.mp3", "/CF5PM.mp3", "/CF6PM.mp3", "/CF7PM.mp3", "/CF8PM.mp3", "/CF9PM.mp3", "/CF10PM.mp3", "/CF11PM.mp3"],
-  ["/NL12AM.mp3", "/NL1AM.mp3", "/NL2AM.mp3", "/NL3AM.mp3", "/NL4AM.mp3", "/NL5AM.mp3", "/NL6AM.mp3", "/NL7AM.mp3", "/NL8AM.mp3", "/NL9AM.mp3", "/NL10AM.mp3", "/NL11AM.mp3", "/NL12PM.mp3", "/NL1PM.mp3", "/NL2MP.mp3", "/NL3PM.mp3", "/NL4PM.mp3", "/NL5PM.mp3", "/NL6PM.mp3", "/NL7PM.mp3", "/NL8PM.mp3", "/NL9PM.mp3", "/NL10PM.mp3", "/NL11PM.mp3"],
-  ["/NH12AM.mp3", "/NH1AM.mp3", "/NH2AM.mp3", "/NH3AM.mp3", "/NH4AM.mp3", "/NH5AM.mp3", "/NH6AM.mp3", "/NH7AM.mp3", "/NH8AM.mp3", "/NH9AM.mp3", "/NH10AM.mp3", "/NH11AM.mp3", "/NH12PM.mp3", "/NH1PM.mp3", "/NH2PM.mp3", "/NH3PM.mp3", "/NH4PM.mp3", "/NH5PM.mp3", "/NH6PM.mp3", "/NH7PM.mp3", "/NH8PM.mp3", "/NH9PM.mp3", "/NH10PM.mp3", "/NH11PM.mp3"]
+  [audioFiles.GC12AM, audioFiles.GC1AM, audioFiles.GC2AM, audioFiles.GC3AM, audioFiles.GC4AM, audioFiles.GC5AM, audioFiles.GC6AM, audioFiles.GC7AM, audioFiles.GC8AM, audioFiles.GC9AM, audioFiles.GC10AM, audioFiles.GC11AM, audioFiles.GC12PM, audioFiles.GC1PM, audioFiles.GC2PM, audioFiles.GC3PM, audioFiles.GC4PM, audioFiles.GC5PM, audioFiles.GC6PM, audioFiles.GC7PM, audioFiles.GC8PM, audioFiles.GC9PM, audioFiles.GC10PM, audioFiles.GC11PM],
+  [audioFiles.CF12AM, audioFiles.CF1AM, audioFiles.CF2AM, audioFiles.CF3AM, audioFiles.CF4AM, audioFiles.CF5AM, audioFiles.CF6AM, audioFiles.CF7AM, audioFiles.CF8AM, audioFiles.CF9AM, audioFiles.CF10AM, audioFiles.CF11AM, audioFiles.CF12PM, audioFiles.CF1PM, audioFiles.CF2PM, audioFiles.CF3PM, audioFiles.CF4PM, audioFiles.CF5PM, audioFiles.CF6PM, audioFiles.CF7PM, audioFiles.CF8PM, audioFiles.CF9PM, audioFiles.CF10PM, audioFiles.CF11PM],
+  [audioFiles.NL12AM, audioFiles.NL1AM, audioFiles.NL2AM, audioFiles.NL3AM, audioFiles.NL4AM, audioFiles.NL5AM, audioFiles.NL6AM, audioFiles.NL7AM, audioFiles.NL8AM, audioFiles.NL9AM, audioFiles.NL10AM, audioFiles.NL11AM, audioFiles.NL12PM, audioFiles.NL1PM, audioFiles.NL2MP, audioFiles.NL3PM, audioFiles.NL4PM, audioFiles.NL5PM, audioFiles.NL6PM, audioFiles.NL7PM, audioFiles.NL8PM, audioFiles.NL9PM, audioFiles.NL10PM, audioFiles.NL11PM],
+  [audioFiles.NH12AM, audioFiles.NH1AM, audioFiles.NH2AM, audioFiles.NH3AM, audioFiles.NH4AM, audioFiles.NH5AM, audioFiles.NH6AM, audioFiles.NH7AM, audioFiles.NH8AM, audioFiles.NH9AM, audioFiles.NH10AM, audioFiles.NH11AM, audioFiles.NH12PM, audioFiles.NH1PM, audioFiles.NH2PM, audioFiles.NH3PM, audioFiles.NH4PM, audioFiles.NH5PM, audioFiles.NH6PM, audioFiles.NH7PM, audioFiles.NH8PM, audioFiles.NH9PM, audioFiles.NH10PM, audioFiles.NH11PM]
 ];
 
 // Sets the random song and game.
@@ -30,30 +31,30 @@ const App = () => {
 
   // Temporarily stores the user's guesses and number of guesses.
   const [timeGuess, setTimeGuess] = useState("");
-  const [timeGuessString, setTimeGuessString] = useState("");
   const [gameGuess, setGameGuess] = useState("");
-  const [gameGuessString, setGameGuessString] = useState("");
   const [guessCount, setGuessCount] = useState(1);
 
+  useEffect(() => {
+    setSongPath(songList[gameAnswerIndex][timeAnswerIndex]);
+  }, [gameAnswerIndex, timeAnswerIndex]);
+
   const handleTimeGuessUpdate = (value) => {
-    timeGuessUpdate(value, setTimeGuess, setTimeGuessString);
+    timeGuessUpdate(value, setTimeGuess);
   };
 
   const handleGameGuessUpdate = (value) => {
-    gameGuessUpdate(value, setGameGuess, setGameGuessString);
+    gameGuessUpdate(value, setGameGuess);
   };
 
   const handlePlay = () => {
-    play(answerSubmitted, guessCount, gameAnswerIndex, timeAnswerIndex);
+    play(guessCount, gameAnswerIndex, timeAnswerIndex, songList);
   };
 
   // Returns the app to be displayed.
   return (
       <div className="App">
         <header className="Header">
-          
-          <img src={require("./assets/leaftle2.png")} className="logo"></img>
-          
+          <img src={require("./assets/leaftle2.png")} className="logo"></img>  
         </header>
 
       <div className="Body">
@@ -90,9 +91,8 @@ const App = () => {
         </div>
 
         <div className="SongSelection">
-
           <div>
-                <Input onChange={event => handleTimeGuessUpdate(event.target.value)} style={{display: "inline-block"}} className="GuessList" list='times' placeholder='Choose time...' />
+                <Input onChange={event => handleTimeGuessUpdate(event.target.value)} style={{display: "inline-block"}} className="GuessList" list='times' placeholder='Choose time...' ></Input>
                   <datalist id='times'>
                     <option value='12AM'>12AM</option>
                     <option value='1AM'>1AM</option>
@@ -130,7 +130,7 @@ const App = () => {
 
             <div>
 
-              <button onClick={submit(timeGuess, gameGuess, timeAnswer, gameAnswer, setGuessCount, setAnswerSubmitted, setResult1, setResult2, setResult3, setResult4, setTotalAnswer, guessCount, gameAnswerIndex, timeAnswerIndex)} className="SubmitButton">
+              <button onClick={() =>submit(timeGuess, gameGuess, timeAnswer, gameAnswer, setGuessCount, setAnswerSubmitted, setResult1, setResult2, setResult3, setResult4, setTotalAnswer, guessCount, gameAnswerIndex, timeAnswerIndex)} className="SubmitButton">
                 <p>Submit!</p>
               </button>
 
