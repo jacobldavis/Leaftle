@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Leaftle/static/css/main.0f77923a.css",
-    "main.js": "/Leaftle/static/js/main.8867c9b4.js",
+    "main.js": "/Leaftle/static/js/main.bce3d5c1.js",
     "static/media/NH7PM.mp3": "/Leaftle/static/media/NH7PM.da493eb692ae9b12ccac.mp3",
     "static/media/NH5AM.mp3": "/Leaftle/static/media/NH5AM.c971fd474617d98f2842.mp3",
     "static/media/NH5PM.mp3": "/Leaftle/static/media/NH5PM.6092d738fb6c0314c71b.mp3",
@@ -106,10 +106,10 @@
     "static/media/qlarendon_bold.otf": "/Leaftle/static/media/qlarendon_bold.72fc69364221faccb3e9.otf",
     "index.html": "/Leaftle/index.html",
     "main.0f77923a.css.map": "/Leaftle/static/css/main.0f77923a.css.map",
-    "main.8867c9b4.js.map": "/Leaftle/static/js/main.8867c9b4.js.map"
+    "main.bce3d5c1.js.map": "/Leaftle/static/js/main.bce3d5c1.js.map"
   },
   "entrypoints": [
     "static/css/main.0f77923a.css",
-    "static/js/main.8867c9b4.js"
+    "static/js/main.bce3d5c1.js"
   ]
 }
