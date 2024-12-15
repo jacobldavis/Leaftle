@@ -91,7 +91,7 @@ export function submit(timeGuess, gameGuess, timeAnswer, gameAnswer, setGuessCou
             if (timeGuess == timeAnswer && gameGuess == gameAnswer) {
                 setResult1("You Win!");
             } else {
-                setResult1(songNames[gameGuess - 1][timeGuess - 1]);
+                setResult1("Try Again! Your Guess: " + songNames[gameGuess - 1][timeGuess - 1]);
             }
         }
 
@@ -99,7 +99,7 @@ export function submit(timeGuess, gameGuess, timeAnswer, gameAnswer, setGuessCou
             if (timeGuess == timeAnswer && gameGuess == gameAnswer) {
                 setResult2("You Win!");
             } else {
-                setResult2(songNames[gameGuess - 1][timeGuess - 1]);
+                setResult2("Try Again! Your Guess: " + songNames[gameGuess - 1][timeGuess - 1]);
             }
         }
 
@@ -107,7 +107,7 @@ export function submit(timeGuess, gameGuess, timeAnswer, gameAnswer, setGuessCou
             if (timeGuess == timeAnswer && gameGuess == gameAnswer) {
                 setResult3("You Win!");
             } else {
-                setResult3(songNames[gameGuess - 1][timeGuess - 1]);
+                setResult3("Try Again! Your Guess: " + songNames[gameGuess - 1][timeGuess - 1]);
             }
         }
 
